@@ -1,6 +1,6 @@
 # Presentación del Proyecto: WEB IA
 
-![Arquitectura](Imagenes/arquitectura.png)
+![Arquitectura](Imagenes/Arquitectura.png)
 
 Este repositorio contiene el código fuente de la aplicación creada por Mateo Heras, que utiliza datos de la  [API](https://datosabiertos.compraspublicas.gob.ec/PLATAFORMA/api/search_ocds).
 

@@ -1,5 +1,7 @@
 # Presentación del Proyecto: WEB IA
 
+ENLACE QUE LLEVA AL PROYECTO PRINCIPAL [WEB AI](http://35.243.215.7:5000/)
+
 ![Arquitectura](Imagenes/Arquitectura.png)
 
 Este repositorio contiene el código fuente de la aplicación creada por Mateo Heras, que utiliza datos de la  [API](https://datosabiertos.compraspublicas.gob.ec/PLATAFORMA/api/search_ocds).

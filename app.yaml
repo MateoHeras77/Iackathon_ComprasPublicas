@@ -1,0 +1,2 @@
+runtime: python39  # Selecciona la versión de Python que estás utilizando
+entrypoint: gunicorn -b :$PORT main:app  # Reemplaza 'main' con el nombre de tu archivo principal de Flask

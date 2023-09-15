@@ -1,6 +1,6 @@
 # Presentación del Proyecto: WEB IA
 
-ENLACE QUE LLEVA AL PROYECTO PRINCIPAL [WEB AI](http://35.211.96.153:5000/){:target="_blank"}
+ENLACE QUE LLEVA AL PROYECTO PRINCIPAL [WEB AI](http://35.211.96.153:5000/){target="_blank"}
 
 ![Arquitectura](Imagenes/Arquitectura.png)
 

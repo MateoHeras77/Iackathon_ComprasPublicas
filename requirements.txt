@@ -1,0 +1,19 @@
+pandas
+requests
+scipy
+google-cloud-bigquery[pandas]==2.34.3
+scikit-learn
+seaborn
+matplotlib
+numpy
+joblib  #  la biblioteca joblib
+datetime
+google-cloud-bigquery
+textwrap3
+flask
+scikit-learn==1.2.2  # Install the specific version used for training
+scikit-learn
+plotly
+langchain_experimental
+openai
+python-dotenv

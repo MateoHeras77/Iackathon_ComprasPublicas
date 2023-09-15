@@ -1,0 +1,352 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pronóstico de Anomalía</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: black;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+        form {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        select {
+            background-color: white;
+        }
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ingresa tus datos</h1>
+    <p>En nuestro modelo de Isolation Forest, consideramos variables como el monto del contrato, la localidad, la provincia, el año y el mes. Aunque inicialmente pensamos en incluir el presupuesto asignado, lo descartamos debido a problemas de multicolinealidad con el monto. No obstante, lo conservamos para futuras necesidades.</p>
+    <p>Además, optamos por crear un modelo de aprendizaje automático para cada tipo de contrato en lugar de usar uno general. Cada tipo de contrato tiene características únicas, y esta estrategia de segmentación nos permite lograr una mayor precisión y eficacia en la detección de anomalías y la toma de decisiones.</p>
+    <form method="POST">
+        <label for="amount">MONTO: </label>
+        <input type="number" name="amount" placeholder="Ingresar el monto que se pago" required>
+
+        <label for="budget">PRESUPUESTO:</label>
+        <input type="number" name="budget" placeholder="Presupuesto del contrato" required>
+
+        <label for="locality">LOCALIDAD:</label>
+        <select name="locality" required>
+            <option value="" disabled selected hidden>Selecciona una localidad</option>
+            <option value="FRANCISCO DE ORELLANA">FRANCISCO DE ORELLANA</option>
+            <option value="CUENCA">CUENCA</option>
+            <option value="ESMERALDAS">ESMERALDAS</option>
+            <option value="QUITO">QUITO</option>
+            <option value="SAMBORONDON">SAMBORONDON</option>
+            <option value="GUAYAQUIL">GUAYAQUIL</option>
+            <option value="DAULE">DAULE</option>
+            <option value="TAISHA">TAISHA</option>
+            <option value="NOBOL">NOBOL</option>
+            <option value="QUIJOS">QUIJOS</option>
+            <option value="CALVAS">CALVAS</option>
+            <option value="MOCACHE">MOCACHE</option>
+            <option value="PORTOVIEJO">PORTOVIEJO</option>
+            <option value="SAQUISILI">SAQUISILI</option>
+            <option value="PAUTE">PAUTE</option>
+            <option value="EL CARMEN">EL CARMEN</option>
+            <option value="CAYAMBE">CAYAMBE</option>
+            <option value="CHINCHIPE">CHINCHIPE</option>
+            <option value="ZAMORA">ZAMORA</option>
+            <option value="IBARRA">IBARRA</option>
+            <option value="SAN CRISTOBAL">SAN CRISTOBAL</option>
+            <option value="BABAHOYO">BABAHOYO</option>
+            <option value="SUCUA">SUCUA</option>
+            <option value="AMBATO">AMBATO</option>
+            <option value="VENTANAS">VENTANAS</option>
+            <option value="BOLIVAR">BOLIVAR</option>
+            <option value="BALSAS">BALSAS</option>
+            <option value="MANTA">MANTA</option>
+            <option value="PASAJE">PASAJE</option>
+            <option value="URDANETA">URDANETA</option>
+            <option value="GUAMOTE">GUAMOTE</option>
+            <option value="LAS LAJAS">LAS LAJAS</option>
+            <option value="CHILLA">CHILLA</option>
+            <option value="LOJA">LOJA</option>
+            <option value="OLMEDO">OLMEDO</option>
+            <option value="PEDRO MONCAYO">PEDRO MONCAYO</option>
+            <option value="MACHALA">MACHALA</option>
+            <option value="PABLO SEXTO">PABLO SEXTO</option>
+            <option value="SANTA ROSA">SANTA ROSA</option>
+            <option value="PAJAN">PAJAN</option>
+            <option value="PUJILI">PUJILI</option>
+            <option value="SANTO DOMINGO">SANTO DOMINGO</option>
+            <option value="ANTONIO ANTE">ANTONIO ANTE</option>
+            <option value="CHILLANES">CHILLANES</option>
+            <option value="SEVILLA DE ORO">SEVILLA DE ORO</option>
+            <option value="TENA">TENA</option>
+            <option value="SANTA ISABEL">SANTA ISABEL</option>
+            <option value="SHUSHUFINDI">SHUSHUFINDI</option>
+            <option value="BAÑOS DE AGUA SANTA">BAÑOS DE AGUA SANTA</option>
+            <option value="NANGARITZA">NANGARITZA</option>
+            <option value="COLTA">COLTA</option>
+            <option value="SAN MIGUEL">SAN MIGUEL</option>
+            <option value="SANTIAGO DE PILLARO">SANTIAGO DE PILLARO</option>
+            <option value="SUCRE">SUCRE</option>
+            <option value="PALORA">PALORA</option>
+            <option value="RUMIÑAHUI">RUMIÑAHUI</option>
+            <option value="SAN PEDRO DE PELILEO">SAN PEDRO DE PELILEO</option>
+            <option value="YACUAMBI">YACUAMBI</option>
+            <option value="ALAUSI">ALAUSI</option>
+            <option value="PASTAZA">PASTAZA</option>
+            <option value="LATACUNGA">LATACUNGA</option>
+            <option value="SANTA ELENA">SANTA ELENA</option>
+            <option value="24 DE MAYO">24 DE MAYO</option>
+            <option value="EMPALME">EMPALME</option>
+            <option value="PATATE">PATATE</option>
+            <option value="AZOGUES">AZOGUES</option>
+            <option value="ELOY ALFARO">ELOY ALFARO</option>
+            <option value="SUCUMBIOS">SUCUMBIOS</option>
+            <option value="TULCAN">TULCAN</option>
+            <option value="CAÑAR">CAÑAR</option>
+            <option value="JARAMIJO">JARAMIJO</option>
+            <option value="SALITRE">SALITRE</option>
+            <option value="JIPIJAPA">JIPIJAPA</option>
+            <option value="ZAPOTILLO">ZAPOTILLO</option>
+            <option value="CATAMAYO">CATAMAYO</option>
+            <option value="GUANO">GUANO</option>
+            <option value="EL PAN">EL PAN</option>
+            <option value="PIÑAS">PIÑAS</option>
+            <option value="QUININDE">QUININDE</option>
+            <option value="RIOBAMBA">RIOBAMBA</option>
+            <option value="SANTA CLARA">SANTA CLARA</option>
+            <option value="MORONA">MORONA</option>
+            <option value="BALZAR">BALZAR</option>
+            <option value="PEDRO VICENTE MALDONADO">PEDRO VICENTE MALDONADO</option>
+            <option value="GUALAQUIZA">GUALAQUIZA</option>
+            <option value="COTACACHI">COTACACHI</option>
+            <option value="PUCARA">PUCARA</option>
+            <option value="ARCHIDONA">ARCHIDONA</option>
+            <option value="OTAVALO">OTAVALO</option>
+            <option value="MIRA">MIRA</option>
+            <option value="MEJIA">MEJIA</option>
+            <option value="LORETO">LORETO</option>
+            <option value="SALINAS">SALINAS</option>
+            <option value="EL PANGUI">EL PANGUI</option>
+            <option value="YANTZAZA (YANZATZA)">YANTZAZA (YANZATZA)</option>
+            <option value="SAN MIGUEL DE URCUQUI">SAN MIGUEL DE URCUQUI</option>
+            <option value="MILAGRO">MILAGRO</option>
+            <option value="CUYABENO">CUYABENO</option>
+            <option value="BUENA FE">BUENA FE</option>
+            <option value="ARAJUNO">ARAJUNO</option>
+            <option value="LAGO AGRIO">LAGO AGRIO</option>
+            <option value="GENERAL ANTONIO ELIZALDE">GENERAL ANTONIO ELIZALDE</option>
+            <option value="GUALACEO">GUALACEO</option>
+            <option value="EL CHACO">EL CHACO</option>
+            <option value="CHORDELEG">CHORDELEG</option>
+            <option value="GONZALO PIZARRO">GONZALO PIZARRO</option>
+            <option value="QUEVEDO">QUEVEDO</option>
+            <option value="ROCAFUERTE">ROCAFUERTE</option>
+            <option value="SAN FERNANDO">SAN FERNANDO</option>
+            <option value="PORTOVELO">PORTOVELO</option>
+            <option value="PINDAL">PINDAL</option>
+            <option value="PALESTINA">PALESTINA</option>
+            <option value="ZARUMA">ZARUMA</option>
+            <option value="CHUNCHI">CHUNCHI</option>
+            <option value="MONTALVO">MONTALVO</option>
+            <option value="PALLATANGA">PALLATANGA</option>
+            <option value="PALTAS">PALTAS</option>
+            <option value="QUERO">QUERO</option>
+            <option value="LA LIBERTAD">LA LIBERTAD</option>
+            <option value="LIMON INDANZA">LIMON INDANZA</option>
+            <option value="MERA">MERA</option>
+            <option value="VINCES">VINCES</option>
+            <option value="TISALEO">TISALEO</option>
+            <option value="SAN PEDRO DE HUACA">SAN PEDRO DE HUACA</option>
+            <option value="MACARA">MACARA</option>
+            <option value="GUARANDA">GUARANDA</option>
+            <option value="SALCEDO">SALCEDO</option>
+            <option value="BALAO">BALAO</option>
+            <option value="PUERTO QUITO">PUERTO QUITO</option>
+            <option value="CHONE">CHONE</option>
+            <option value="PANGUA">PANGUA</option>
+            <option value="GIRON">GIRON</option>
+            <option value="PLAYAS">PLAYAS</option>
+            <option value="LA TRONCAL">LA TRONCAL</option>
+            <option value="ATACAMES">ATACAMES</option>
+            <option value="PALANDA">PALANDA</option>
+            <option value="MONTUFAR">MONTUFAR</option>
+            <option value="PEDRO CARBO">PEDRO CARBO</option>
+            <option value="PAQUISHA">PAQUISHA</option>
+            <option value="GUACHAPALA">GUACHAPALA</option>
+            <option value="LA JOYA DE LOS SACHAS">LA JOYA DE LOS SACHAS</option>
+            <option value="SAN JACINTO DE YAGUACHI">SAN JACINTO DE YAGUACHI</option>
+            <option value="DURAN">DURAN</option>
+            <option value="None">None</option>
+            <option value="SIGSIG">SIGSIG</option>
+            <option value="DELEG">DELEG</option>
+            <option value="SANTA CRUZ">SANTA CRUZ</option>
+            <option value="NARANJAL">NARANJAL</option>
+            <option value="QUILANGA">QUILANGA</option>
+            <option value="OÑA">OÑA</option>
+            <option value="LA MANA">LA MANA</option>
+            <option value="MONTECRISTI">MONTECRISTI</option>
+            <option value="RIOVERDE">RIOVERDE</option>
+            <option value="ISABELA">ISABELA</option>
+            <option value="LA CONCORDIA">LA CONCORDIA</option>
+            <option value="PICHINCHA">PICHINCHA</option>
+            <option value="EL TAMBO">EL TAMBO</option>
+            <option value="CASCALES">CASCALES</option>
+            <option value="LOMAS DE SARGENTILLO">LOMAS DE SARGENTILLO</option>
+            <option value="SIGCHOS">SIGCHOS</option>
+            <option value="CORONEL MARCELINO MARIDUEÑA">CORONEL MARCELINO MARIDUEÑA</option>
+            <option value="GONZANAMA">GONZANAMA</option>
+            <option value="SANTIAGO">SANTIAGO</option>
+            <option value="PUYANGO">PUYANGO</option>
+            <option value="SARAGURO">SARAGURO</option>
+            <option value="QUINSALOMA">QUINSALOMA</option>
+            <option value="ATAHUALPA">ATAHUALPA</option>
+            <option value="LAS NAVES">LAS NAVES</option>
+            <option value="PUTUMAYO">PUTUMAYO</option>
+            <option value="HUAMBOYA">HUAMBOYA</option>
+            <option value="ESPINDOLA">ESPINDOLA</option>
+            <option value="SAN JUAN BOSCO">SAN JUAN BOSCO</option>
+            <option value="PUEBLOVIEJO">PUEBLOVIEJO</option>
+            <option value="TOSAGUA">TOSAGUA</option>
+            <option value="SANTA LUCIA">SANTA LUCIA</option>
+            <option value="PEDERNALES">PEDERNALES</option>
+            <option value="CENTINELA DEL CONDOR">CENTINELA DEL CONDOR</option>
+            <option value="AGUARICO">AGUARICO</option>
+            <option value="ARENILLAS">ARENILLAS</option>
+            <option value="LOGROÑO">LOGROÑO</option>
+            <option value="COLIMES">COLIMES</option>
+            <option value="MARCABELI">MARCABELI</option>
+            <option value="SOZORANGA">SOZORANGA</option>
+            <option value="CEVALLOS">CEVALLOS</option>
+            <option value="HUAQUILLAS">HUAQUILLAS</option>
+            <option value="EL GUABO">EL GUABO</option>
+            <option value="CALUMA">CALUMA</option>
+            <option value="SANTA ANA">SANTA ANA</option>
+            <option value="BABA">BABA</option>
+            <option value="NARANJITO">NARANJITO</option>
+            <option value="CARLOS JULIO AROSEMENA TOLA">CARLOS JULIO AROSEMENA TOLA</option>
+            <option value="ESPEJO">ESPEJO</option>
+            <option value="VALENCIA">VALENCIA</option>
+            <option value="BIBLIAN">BIBLIAN</option>
+            <option value="MOCHA">MOCHA</option>
+            <option value="CHAGUARPAMBA">CHAGUARPAMBA</option>
+            <option value="CHAMBO">CHAMBO</option>
+            <option value="JAMA">JAMA</option>
+            <option value="PALENQUE">PALENQUE</option>
+            <option value="MUISNE">MUISNE</option>
+            <option value="CAMILO PONCE ENRIQUEZ">CAMILO PONCE ENRIQUEZ</option>
+            <option value="PENIPE">PENIPE</option>
+            <option value="ISIDRO AYORA">ISIDRO AYORA</option>
+            <option value="SAN LORENZO">SAN LORENZO</option>
+            <option value="SIMON BOLIVAR">SIMON BOLIVAR</option>
+            <option value="CUMANDA">CUMANDA</option>
+            <option value="CELICA">CELICA</option>
+            <option value="FLAVIO ALFARO">FLAVIO ALFARO</option>
+            <option value="EL TRIUNFO">EL TRIUNFO</option>
+            <option value="PIMAMPIRO">PIMAMPIRO</option>
+            <option value="SAN MIGUEL DE LOS BANCOS">SAN MIGUEL DE LOS BANCOS</option>
+            <option value="NABON">NABON</option>
+            <option value="JUNIN">JUNIN</option>
+            <option value="TIWINTZA">TIWINTZA</option>
+            <option value="ECHEANDIA">ECHEANDIA</option>
+        </select>
+
+        <label for="region">PROVINCIA:</label>
+        <select name="region" required>
+            <option value="" disabled selected hidden>Selecciona una provincia</option>
+            <option value="ORELLANA">ORELLANA</option>
+            <option value="AZUAY">AZUAY</option>
+            <option value="ESMERALDAS">ESMERALDAS</option>
+            <option value="PICHINCHA">PICHINCHA</option>
+            <option value="GUAYAS">GUAYAS</option>
+            <option value="MORONA SANTIAGO">MORONA SANTIAGO</option>
+            <option value="NAPO">NAPO</option>
+            <option value="LOJA">LOJA</option>
+            <option value="LOS RIOS">LOS RIOS</option>
+            <option value="MANABI">MANABI</option>
+            <option value="COTOPAXI">COTOPAXI</option>
+            <option value="ZAMORA CHINCHIPE">ZAMORA CHINCHIPE</option>
+            <option value="IMBABURA">IMBABURA</option>
+            <option value="GALAPAGOS">GALAPAGOS</option>
+            <option value="TUNGURAHUA">TUNGURAHUA</option>
+            <option value="EL ORO">EL ORO</option>
+            <option value="CHIMBORAZO">CHIMBORAZO</option>
+            <option value="SANTO DOMINGO DE LOS TSACHILAS">SANTO DOMINGO DE LOS TSACHILAS</option>
+            <option value="BOLIVAR">BOLIVAR</option>
+            <option value="SUCUMBIOS">SUCUMBIOS</option>
+            <option value="PASTAZA">PASTAZA</option>
+            <option value="SANTA ELENA">SANTA ELENA</option>
+            <option value="CAÑAR">CAÑAR</option>
+            <option value="CARCHI">CARCHI</option>
+            <option value="None">None</option>
+        </select>
+
+        <label for="year">AÑO:</label>
+        <input type="number" name="year" placeholder="Ingresar año" required>
+
+        <label for="month">MES:</label>
+        <select name="month" required>
+            <option value="" disabled selected hidden>Selecciona el mes</option>
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+            
+        </select>
+
+        <input type="submit" value="Pronosticar">
+    </form>
+</body>
+</html>
+{% endblock %}

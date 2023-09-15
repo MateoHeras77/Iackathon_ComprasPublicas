@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot SQL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            background-color: #ffffff; /* Fondo blanco */
+            font-family: Arial, sans-serif;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #000000; /* Texto negro */
+        }
+        
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #000000; /* Texto negro */
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        
+        input[type="submit"] {
+            background-color: #000000; /* Botón negro */
+            color: #ffffff; /* Texto blanco */
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #222222; /* Cambia de color al pasar el cursor */
+        }
+        
+        h2 {
+            margin-top: 20px;
+            color: #000000; /* Texto negro */
+        }
+        
+        p {
+            font-size: 16px;
+            color: #000000; /* Texto negro */
+        }
+    </style>
+</head>
+<body>
+    <h1>HABLA CON TUS DATOS</h1>
+    <p>IMPORTANTE: Esta funcionalidad utiliza la API de OpenAI, la cual es de pago. Debido a que esta conectada mi tarjeta de crédito, me veo en la OBLIGACIÓN de solicitar de la manera mas comedida al jurado calificador o persona encargada del IAckathon utilizarla con prudencia.</p>
+    <form method="POST">
+        <label for="pregunta">¿En qué te puedo ayudar?</label>
+        <input type="text" name="pregunta" id="pregunta">
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
+    {% if pregunta %}
+        <h2>Pregunta:</h2>
+        <p>{{ pregunta }}</p>
+        <h2>Respuesta:</h2>
+        <p>{{ respuesta }}</p>
+    {% endif %}
+</body>
+</html>
+{% endblock %}

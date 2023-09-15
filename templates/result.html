@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 0 auto;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #ccc;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resultados del Pronóstico de Anomalía</h1>
+    <p>La tabla de resultados se organiza en dos columnas: 'Descripción' y 'Valor'. Las entradas desde 'amount' hasta 'region_ec' en la columna 'Descripción' representan las variables principales utilizadas en el estudio. Estas variables se destacan principalmente para fines de visualización y comprobación de datos, especialmente al comparar los datos de producción con los datos de desarrollo local. Sin embargo, durante el proceso de entrenamiento de los modelos, utilizamos un conjunto específico de variables que incluye 'amount_normalized', 'locality_ec', 'region_ec', 'year' y 'month'. Para estandarizar las variables numéricas y codificar las categóricas, aplicamos StandarScaler y LabelEncoding, respectivamente.  </p>
+    <p>Una vez que el usuario ingresa sus datos, estos se procesan a través de todos los modelos creados, siendo un modelo único para cada tipo de contrato. El resultado obtenido indica si, dados los datos proporcionados por el usuario, el contrato se considera anómalo o no en relación con el tipo de contrato mencionado en cada fila de la columna 'Descripción'.</p>
+    <table>
+        <tr>
+            <th>Descripción</th>
+            <th>Valor</th>
+        </tr>
+        {% for index, row in data.iterrows() %}
+            {% for column, value in row.items() %}
+                <tr>
+                    <td>{{ column }}</td>
+                    <td>{{ value }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+    <div class="footer">
+        <p>Modelo realizado por Wilmer Mateo HERAS VERA</p>
+        <p>Email: WMATEOHV@HOTMAIL.COM</p>
+        <p>Teléfono: 0980915563</p>
+    </div>
+</body>
+</html>
+{% endblock %}

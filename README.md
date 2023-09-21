@@ -2,6 +2,8 @@
 
 ENLACE QUE LLEVA AL PROYECTO PRINCIPAL [WEB AI](http://35.211.96.153:5000/)   <-- INGRESAR
 
+PRESENTACIÓN Y TUTORIAL EN YOUTUBE: [ENLACE A YOUTUBE](https://youtu.be/uRC84FbVBV8)   <-- TUTORIAL Y PRESENTACIÓN
+
 (En caso de tener problemas con abrir la web, ponerse en contacto a 0980915563)
 
 ![Arquitectura](Imagenes/Arquitectura.png)
